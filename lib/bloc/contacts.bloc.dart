@@ -5,9 +5,9 @@ import '../repositories/contacts.repo.dart';
 
 abstract class ContactsEvent{}
 
-class LoadAllContactsEvent extends ContactsEvent{}
-class LoadStudentsevent extends ContactsEvent{}
-class LoadDevelopersEvent  extends ContactsEvent{}
+final class LoadAllContactsEvent extends ContactsEvent{}
+final class LoadStudentsevent extends ContactsEvent{}
+final class LoadDevelopersEvent  extends ContactsEvent{}
 
 enum RequestState{ LOADING,LOADED,ERROR,NONE }
 
@@ -20,10 +20,10 @@ class ContactsState{
 }
 
 class ContactsBloc extends Bloc<ContactsEvent,ContactsState>{
-  ContactsRepository contactsRepository;
+  late ContactsRepository contactsRepository;
 
-  ContactsBloc(super.initialState,this.contactsRepository){
-    on<LoadAllContactsEvent>((event,emit) async{
+  ContactsBloc(ContactsState initialState, this.contactsRepository) :
+    super(ContactsState(contact: [],errorMessage: '',requestState: RequestState.NONE)){on<LoadAllContactsEvent>((event,emit) async{
       emit(ContactsState(contact: state.contact,requestState: RequestState.LOADING));
       try {
         List<Contact> data = await contactsRepository.allContacts();
@@ -39,5 +39,7 @@ class ContactsBloc extends Bloc<ContactsEvent,ContactsState>{
 
     });
   }
+
+  
 
 }

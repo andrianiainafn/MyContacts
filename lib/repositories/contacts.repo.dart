@@ -12,7 +12,7 @@ class ContactsRepository{
   };
   
   Future<List<Contact>> allContacts() async{
-    var future = await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     int rnd = Random().nextInt(10);
     if(rnd > 3){
       return contacts.values.toList();
@@ -22,7 +22,7 @@ class ContactsRepository{
   }
 
   Future<List<Contact>> contactsByTypes(String type) async{
-    var future = await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     int rnd = Random().nextInt(10);
     if(rnd > 3){
       return contacts.values.where((element) => element.type == type).toList();
