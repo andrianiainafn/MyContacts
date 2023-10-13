@@ -4,6 +4,10 @@ import 'package:social_mobile/bloc/contacts.bloc.dart';
 import 'package:social_mobile/repositories/contacts.repo.dart';
 import 'package:social_mobile/ui/pages/contacts/contacts.page.dart';
 
+import 'bloc/contacts.actions.dart';
+import 'bloc/contacts.state.dart';
+import 'enums/enums.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -16,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context)=>ContactsBloc
-          (ContactsState(contact: [],requestState: RequestState.NONE,errorMessage: ''),
+          (ContactsState(contact: [],requestState: RequestState.NONE,errorMessage: '',currentEvent: LoadAllContactsEvent()),
             ContactsRepository()
         )
         )
@@ -24,7 +28,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         theme: ThemeData(primarySwatch: Colors.indigo),
         routes: {
-          '/contacts':(context)=>ContactsPage()
+          '/contacts':(context)=>const ContactsPage()
         },
         initialRoute: '/contacts',
       ),

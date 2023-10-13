@@ -4,11 +4,11 @@ import 'package:social_mobile/model/contact.model.dart';
 
 class ContactsRepository{
   Map<int,Contact> contacts ={
-    1:Contact(id:1,name: "Nezuko",profile: "NE",score: 5437,type: 'Student'),
-    2:Contact(id:2,name: "Yor",profile: "YO",score: 6754,type: 'Developer'),
-    3:Contact(id:3,name: "Tsunade",profile: "TS",score: 4533,type: 'Student'),
-    4:Contact(id:4,name: "Nomena",profile: "FN",score: 47789,type: 'Developer'),
-    5:Contact(id:5,name: "Ino",profile: "IN",score: 45336,type: 'Student')
+    1:Contact(id:1,name: "Nezuko",profile: "NE",score: 537,type: 'Student'),
+    2:Contact(id:2,name: "Yor",profile: "YO",score: 675,type: 'Developer'),
+    3:Contact(id:3,name: "Tsunade",profile: "TS",score: 533,type: 'Student'),
+    4:Contact(id:4,name: "Nomena",profile: "FN",score: 778,type: 'Developer'),
+    5:Contact(id:5,name: "Ino",profile: "IN",score: 453,type: 'Student')
   };
   
   Future<List<Contact>> allContacts() async{

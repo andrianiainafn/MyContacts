@@ -1,45 +1,43 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../enums/enums.dart';
 import '../model/contact.model.dart';
 import '../repositories/contacts.repo.dart';
+import 'contacts.actions.dart';
+import 'contacts.state.dart';
 
-abstract class ContactsEvent{}
-
-final class LoadAllContactsEvent extends ContactsEvent{}
-final class LoadStudentsevent extends ContactsEvent{}
-final class LoadDevelopersEvent  extends ContactsEvent{}
-
-enum RequestState{ LOADING,LOADED,ERROR,NONE }
-
-class ContactsState{
-  List<Contact>? contact;
-  RequestState? requestState;
-  String? errorMessage;
-
-  ContactsState({this.contact, this.requestState, this.errorMessage});
-}
 
 class ContactsBloc extends Bloc<ContactsEvent,ContactsState>{
-  late ContactsRepository contactsRepository;
+  ContactsRepository contactsRepository;
 
   ContactsBloc(ContactsState initialState, this.contactsRepository) :
-    super(ContactsState(contact: [],errorMessage: '',requestState: RequestState.NONE)){on<LoadAllContactsEvent>((event,emit) async{
-      emit(ContactsState(contact: state.contact,requestState: RequestState.LOADING));
+    super(ContactsState(contact: [],errorMessage: '',requestState: RequestState.NONE,currentEvent: LoadAllContactsEvent())){
+    on<LoadAllContactsEvent>((event,emit) async{
+      emit(ContactsState(contact: state.contact,requestState: RequestState.LOADING,currentEvent: event));
       try {
         List<Contact> data = await contactsRepository.allContacts();
-        emit(ContactsState(contact: data,requestState: RequestState.LOADED));
+        emit(ContactsState(contact: data,requestState: RequestState.LOADED,currentEvent: event));
       } on Exception catch (e) {
-        emit(ContactsState(contact: state.contact,requestState: RequestState.ERROR,errorMessage: e.toString()));
+        emit(ContactsState(contact: state.contact,requestState: RequestState.ERROR,errorMessage: e.toString(),currentEvent: event));
       }
     });
-    on<LoadStudentsevent>((event,emit){
-
+    on<LoadStudentsevent>((event,emit) async{
+      emit(ContactsState(contact: state.contact,requestState: RequestState.LOADING,currentEvent: event));
+      try {
+        List<Contact> data = await contactsRepository.contactsByTypes('Student');
+        emit(ContactsState(contact: data,requestState: RequestState.LOADED,currentEvent: event));
+      } on Exception catch (e) {
+        emit(ContactsState(contact: state.contact,requestState: RequestState.ERROR,errorMessage: e.toString(),currentEvent: event));
+      }
     });
-    on<LoadDevelopersEvent>((event,emit){
-
+    on<LoadDevelopersEvent>((event,emit)async{
+      emit(ContactsState(contact: state.contact,requestState: RequestState.LOADING,currentEvent: event));
+      try {
+        List<Contact> data = await contactsRepository.contactsByTypes('Developer');
+        emit(ContactsState(contact: data,requestState: RequestState.LOADED,currentEvent: event));
+      } on Exception catch (e) {
+        emit(ContactsState(contact: state.contact,requestState: RequestState.ERROR,errorMessage: e.toString(),currentEvent: event));
+      }
     });
   }
-
-  
-
 }
