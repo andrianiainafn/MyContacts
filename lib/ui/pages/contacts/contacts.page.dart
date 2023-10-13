@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_mobile/bloc/contacts.bloc.dart';
+import 'package:social_mobile/ui/pages/contacts/widgets/contacts.bar.button.dart';
 
 import '../../../bloc/contacts.actions.dart';
 import '../../../bloc/contacts.state.dart';
@@ -15,37 +16,7 @@ class ContactsPage extends StatelessWidget {
       appBar: AppBar(title: const Text('Contacts'),),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ElevatedButton(onPressed: (){
-                  context.read<ContactsBloc>().add(LoadAllContactsEvent());
-                },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.purple
-                  ),
-                  child: const Text("All contacts"),
-                ),
-                ElevatedButton(onPressed: (){
-                  context.read<ContactsBloc>().add(LoadStudentsevent());
-                },
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.purple
-                ),
-                child: const Text("Students")
-                ),
-                ElevatedButton(onPressed: (){
-                  context.read<ContactsBloc>().add(LoadDevelopersEvent());
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.purple
-                ),
-                child: const Text("Developers")),
-              ],
-            ),
-          ),
+          const ContactsButton(),
           BlocBuilder<ContactsBloc,ContactsState>(
             builder:(context,state){
               if(state.requestState == RequestState.LOADING){
