@@ -14,7 +14,7 @@ class ContactsRepository{
   Future<List<Contact>> allContacts() async{
     await Future.delayed(const Duration(seconds: 1));
     int rnd = Random().nextInt(10);
-    if(rnd > 3){
+    if(rnd > 2){
       return contacts.values.toList();
     }else{
       throw Exception("Internet error");

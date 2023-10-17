@@ -10,8 +10,8 @@ import 'contacts.state.dart';
 class ContactsBloc extends Bloc<ContactsEvent,ContactsState>{
   ContactsRepository contactsRepository;
 
-  ContactsBloc(ContactsState initialState, this.contactsRepository) :
-    super(ContactsState(contact: [],errorMessage: '',requestState: RequestState.NONE,currentEvent: LoadAllContactsEvent())){
+  ContactsBloc(this.contactsRepository) :
+    super(ContactsState(contact: [],errorMessage: '',requestState: RequestState.NONE,currentEvent:DefaultEvent())){
     on<LoadAllContactsEvent>((event,emit) async{
       emit(ContactsState(contact: state.contact,requestState: RequestState.LOADING,currentEvent: event));
       try {
