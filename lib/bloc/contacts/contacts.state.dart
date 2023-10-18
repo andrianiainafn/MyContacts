@@ -1,5 +1,5 @@
-import '../enums/enums.dart';
-import '../model/contact.model.dart';
+import '../../enums/enums.dart';
+import '../../model/contact.model.dart';
 import 'contacts.actions.dart';
 
 class ContactsState{

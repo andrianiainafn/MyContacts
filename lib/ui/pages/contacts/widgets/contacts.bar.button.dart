@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:social_mobile/bloc/contacts.actions.dart';
+import 'package:social_mobile/bloc/contacts/contacts.actions.dart';
 import 'package:social_mobile/ui/pages/contacts/widgets/contacts.button.item.dart';
 
 

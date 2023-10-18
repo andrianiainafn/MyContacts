@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:social_mobile/bloc/contacts.bloc.dart';
+import 'package:social_mobile/bloc/contacts/contacts.bloc.dart';
 import 'package:social_mobile/ui/pages/contacts/widgets/contacts.bar.button.dart';
 import 'package:social_mobile/ui/pages/contacts/widgets/contacts.list.dart';
 import 'package:social_mobile/ui/shared/error.retry.dart';
 
-import '../../../bloc/contacts.actions.dart';
-import '../../../bloc/contacts.state.dart';
+import '../../../bloc/contacts/contacts.actions.dart';
+import '../../../bloc/contacts/contacts.state.dart';
 import '../../../enums/enums.dart';
 
 class ContactsPage extends StatelessWidget {

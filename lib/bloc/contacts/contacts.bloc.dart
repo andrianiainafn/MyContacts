@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../enums/enums.dart';
-import '../model/contact.model.dart';
-import '../repositories/contacts.repo.dart';
+import '../../enums/enums.dart';
+import '../../model/contact.model.dart';
+import '../../repositories/contacts.repo.dart';
 import 'contacts.actions.dart';
 import 'contacts.state.dart';
 

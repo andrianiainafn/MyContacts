@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:social_mobile/bloc/contacts.state.dart';
+import 'package:social_mobile/bloc/contacts/contacts.state.dart';
 
-import '../../../../bloc/contacts.actions.dart';
-import '../../../../bloc/contacts.bloc.dart';
+import '../../../../bloc/contacts/contacts.actions.dart';
+import '../../../../bloc/contacts/contacts.bloc.dart';
 
 class ContactsButtonItem extends StatelessWidget {
 
