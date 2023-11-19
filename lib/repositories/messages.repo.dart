@@ -24,7 +24,7 @@ class MessageRepository{
   Future<List<Message>> messagesByContacts (int contactId) async {
     await Future.delayed(const Duration(seconds: 2));
     int rnd = Random().nextInt(10);
-    if (rnd > 5) {
+    if (rnd > 2) {
       return messages.values.where((element) => element.contactId == contactId).toList();
     } else {
       throw Exception('Network Error');

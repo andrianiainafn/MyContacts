@@ -5,6 +5,10 @@ import 'package:social_mobile/bloc/messages/messages.bloc.dart';
 import 'package:social_mobile/bloc/messages/messages.state.dart';
 import 'package:social_mobile/enums/enums.dart';
 import 'package:social_mobile/model/contact.model.dart';
+import 'package:social_mobile/ui/pages/messages/widgets/contact.info.widget.dart';
+import 'package:social_mobile/ui/pages/messages/widgets/message.form.widget.dart';
+import 'package:social_mobile/ui/pages/messages/widgets/messages.list.widget.dart';
+import 'package:social_mobile/ui/shared/circular.progress.ind.widget.dart';
 import 'package:social_mobile/ui/shared/error.retry.dart';
 
 class MessagesPage extends StatelessWidget {
@@ -20,22 +24,13 @@ class MessagesPage extends StatelessWidget {
       appBar: AppBar(title:  Text('Messages ${contact?.name}'),),
       body: Column(
         children: [
-            Container(
-              padding: const EdgeInsets.all(18),
-              child: Row(
-                children: [
-                  CircleAvatar(child: Text('${contact?.profile}'),),
-                  const SizedBox(width: 10),
-                  Text('${contact?.name}')
-                ],
-              ),
-            ),
+            ContactInfoWidget(contact: contact,),
             BlocBuilder<MessagesBloc,MessageState>(
                 builder: (context,state){
                   if(state.requestState == RequestState.LOADING){
                      return  const Expanded(
                        child: Center(
-                         child: CircularProgressIndicator(),
+                         child: MyCircularProgressIndicatorWidget(),
                        ),
                      );
                   }else if(state.requestState == RequestState.ERROR){
@@ -46,29 +41,13 @@ class MessagesPage extends StatelessWidget {
                       // print(state.currentMessageEvent);
                     });
                   }else if (state.requestState == RequestState.LOADED){
-                    return Expanded(
-                        child: ListView.separated(
-                            itemBuilder: (context,index)=> ListTile(
-                              title: Row(
-                                children: [
-                                  Text('${state.messages?[index].content}')
-                                ],
-                              ),
-                            ),
-                            separatorBuilder: (context,index)=> const Divider(color: Colors.indigo,height: 2,),
-                            itemCount: state.messages!.length
-                        )
-                    );
+                    return MessagesListWidget(messages: state.messages);
                   }else{
                     return const Text('');
                   }
                 }
             ),
-          Container(
-            padding: const EdgeInsets.all(18),
-            alignment: Alignment.bottomLeft,
-            child: const Text('Text form',),
-          )
+            const MessagesFormWidget()
         ],
       )
     );
