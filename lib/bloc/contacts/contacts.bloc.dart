@@ -21,7 +21,7 @@ class ContactsBloc extends Bloc<ContactsEvent,ContactsState>{
         emit(ContactsState(contact: state.contact,requestState: RequestState.ERROR,errorMessage: e.toString(),currentEvent: event));
       }
     });
-    on<LoadStudentsevent>((event,emit) async{
+    on<LoadStudentsEvent>((event,emit) async{
       emit(ContactsState(contact: state.contact,requestState: RequestState.LOADING,currentEvent: event));
       try {
         List<Contact> data = await contactsRepository.contactsByTypes('Student');

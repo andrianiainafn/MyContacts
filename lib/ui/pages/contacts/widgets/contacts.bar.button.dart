@@ -14,7 +14,7 @@ class ContactsButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
             ContactsButtonItem(buttonLabel: 'All contacts',contactsEvent: LoadAllContactsEvent(),),
-          ContactsButtonItem(buttonLabel: 'Students',contactsEvent: LoadStudentsevent(),),
+          ContactsButtonItem(buttonLabel: 'Students',contactsEvent: LoadStudentsEvent(),),
           ContactsButtonItem(buttonLabel: 'Developers',contactsEvent: LoadDevelopersEvent(),),
         ],
       ),
