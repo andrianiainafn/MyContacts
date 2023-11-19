@@ -47,7 +47,7 @@ class MessagesPage extends StatelessWidget {
                   }
                 }
             ),
-            const MessagesFormWidget()
+          MessagesFormWidget(contact: contact,)
         ],
       )
     );
