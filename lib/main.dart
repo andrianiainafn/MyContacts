@@ -5,6 +5,7 @@ import 'package:social_mobile/bloc/contacts/contacts.bloc.dart';
 import 'package:social_mobile/bloc/messages/messages.bloc.dart';
 import 'package:social_mobile/repositories/contacts.repo.dart';
 import 'package:social_mobile/repositories/messages.repo.dart';
+import 'package:social_mobile/ui/pages/contactWithMessage/contacts.messages.page.dart';
 import 'package:social_mobile/ui/pages/contacts/contacts.page.dart';
 import 'package:social_mobile/ui/pages/messages/messages.page.dart';
 
@@ -41,7 +42,8 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         routes: {
           '/contacts':(context)=>const ContactsPage(),
-          '/messages':(context)=>MessagesPage()
+          '/messages':(context)=>MessagesPage(),
+          '/contactsWithMessages':(context)=> const ContactsWithMessages()
         },
         initialRoute: '/contacts',
       ),
