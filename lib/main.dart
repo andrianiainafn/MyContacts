@@ -38,6 +38,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         theme: ThemeData(primarySwatch: Colors.indigo),
+        debugShowCheckedModeBanner: false,
         routes: {
           '/contacts':(context)=>const ContactsPage(),
           '/messages':(context)=>MessagesPage()

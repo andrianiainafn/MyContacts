@@ -23,6 +23,7 @@ class MessagesFormWidget extends StatelessWidget {
                 keyboardType: TextInputType.multiline,
                 maxLines: null,
                 decoration: const InputDecoration(
+                  hintText: "write message",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(20))
                   )
@@ -35,6 +36,7 @@ class MessagesFormWidget extends StatelessWidget {
 
             Message  replay = Message(type: 'received',content: 'Answer to ${textEditingController.text}',contactId: contact?.id);
             context.read<MessagesBloc>().add(AddNewMessageEvent(replay));
+            textEditingController.text = "";
           }, icon:const Icon(Icons.send))
         ],
       ),

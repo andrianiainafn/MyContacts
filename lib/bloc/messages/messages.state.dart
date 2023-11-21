@@ -8,11 +8,13 @@ class MessageState{
   RequestState? requestState;
   String? messageError;
   MessageEvent? currentMessageEvent;
+  List<Message> selectedMessage;
 
   MessageState({this.messages, this.requestState, this.messageError,
-    this.currentMessageEvent});
+    this.currentMessageEvent,this.selectedMessage= const []});
 
   MessageState.initialState():
+      selectedMessage = [],
       requestState = RequestState.NONE,
       messages = [],
       messageError =  '';

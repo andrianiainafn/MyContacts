@@ -11,3 +11,9 @@ class MessageByContactEvent extends MessageEvent<Contact>{
 class AddNewMessageEvent extends MessageEvent<Message>{
   AddNewMessageEvent(super.payload);
 }
+class SelectMessageEvent extends MessageEvent<Message>{
+  SelectMessageEvent(super.payload);
+}
+class DeleteMessageEvent extends MessageEvent{
+  DeleteMessageEvent(): super(null);
+}

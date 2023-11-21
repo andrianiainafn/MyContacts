@@ -21,7 +21,24 @@ class MessagesPage extends StatelessWidget {
     contact = ModalRoute.of(context)?.settings.arguments as Contact?;
     context.read<MessagesBloc>().add(MessageByContactEvent(contact!));
     return Scaffold(
-      appBar: AppBar(title:  Text('Messages ${contact?.name}'),),
+      appBar: AppBar(title:
+      Text('Messages ${contact?.name}'),
+      actions: [
+        BlocBuilder<MessagesBloc,MessageState>(builder: (context,state){
+            return CircleAvatar(child: Text('${state.messages?.length}'),);
+
+        }),
+          BlocBuilder<MessagesBloc,MessageState>(builder: (context,state){
+              if(state.selectedMessage.isNotEmpty){
+                return IconButton(onPressed: (){
+                  context.read<MessagesBloc>().add(DeleteMessageEvent());
+                }, icon: const Icon(Icons.restore_from_trash_outlined));
+              }else{
+                return Container();
+              }
+          })
+      ],
+      ),
       body: Column(
         children: [
             ContactInfoWidget(contact: contact,),
