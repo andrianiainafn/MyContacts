@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
           '/messages':(context)=>MessagesPage(),
           '/contactsWithMessages':(context)=> const ContactsWithMessages()
         },
-        initialRoute: '/contacts',
+        initialRoute: '/contactsWithMessages',
       ),
     );
   }
